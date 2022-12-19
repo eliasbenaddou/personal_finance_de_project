@@ -1,0 +1,5 @@
+monzo-api
+great-expectations
+airflow-provider-great-expectations
+psycopg2-binary
+pytest

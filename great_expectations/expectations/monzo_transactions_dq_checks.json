@@ -1,0 +1,23 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "monzo_transactions_dq_checks",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "notes",
+        "mostly": 0.95
+      },
+      "meta": {
+        "notes": {
+          "content": "The 'notes' column in the view 'v_monzo_transactions' describes the transaction and takes data from the 'notes' and 'suggested_tag' columns in the main table. ",
+          "format": "markdown"
+        }
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.15.34"
+  }
+}

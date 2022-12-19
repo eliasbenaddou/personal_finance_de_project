@@ -1,0 +1,35 @@
+name: monzo_transactions_dq_checks
+config_version: 1.0
+template_name:
+module_name: great_expectations.checkpoint
+class_name: Checkpoint
+run_name_template: '%Y%m%d-%H%M%S-monzo-transactions-dq-checks'
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: store_evaluation_params
+    action:
+      class_name: StoreEvaluationParametersAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+      site_names: []
+  - name: send_email_on_validation_result # name can be set to any value
+    action:
+      class_name: EmailAction
+      notify_on: all # possible values: "all", "failure", "success"
+      notify_with: # optional list containing the DataDocs sites to include in the notification. Defaults to including links to all configured sites.
+      use_ssl: True
+      use_tls: False
+      renderer:
+        module_name: great_expectations.render.renderer.email_renderer
+        class_name: EmailRenderer
+      # put the actual following information in the uncommitted/config_variables.yml file
+      # or pass in as environment variable
+      smtp_address: ${SMTP_ADDRESS}
+      smtp_port: ${SMTP_PORT}
+      sender_login: ${SENDER_LOGIN}
+      sender_password: ${SENDER_PASSWORD}
+      sender_alias: ${SENDER_ALIAS}
+      receiver_emails: ${RECEIVER_EMAILS} # string containing email addresses separated by commas
